@@ -26,30 +26,9 @@ const Navbar = ({ onSidebarToggle }) => {
                 >
                     <MenuIcon />
                 </IconButton>
-                <Stack direction="row" spacing={1.5} alignItems="center">
-                    <Avatar sx={{ bgcolor: '#9b6bff', width: 36, height: 36, boxShadow: '0 0 0 4px rgba(155,107,255,0.2)' }}>
-                        <BoltIcon fontSize="small" />
-                    </Avatar>
-                    <Box>
-                        <Typography variant="subtitle2" sx={{ color: 'rgba(248,251,255,0.7)' }}>
-                            Innoviative ML Studio
-                        </Typography>
-                        <Typography variant="h6" sx={{ fontWeight: 800 }}>Training Lab</Typography>
-                    </Box>
-                </Stack>
+
 
                 <Box sx={{ flexGrow: 1 }} />
-
-                <Chip
-                    icon={<BoltIcon sx={{ color: '#ff4fb7' }} />}
-                    label="Realtime Preview"
-                    sx={{
-                        borderRadius: 2,
-                        bgcolor: 'rgba(255,79,183,0.15)',
-                        color: '#ffb6e5',
-                        border: '1px solid rgba(255,79,183,0.3)'
-                    }}
-                />
 
                 <IconButton color="inherit" sx={{ ml: 1 }}>
                     <AccountCircle />
