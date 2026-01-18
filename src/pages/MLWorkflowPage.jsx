@@ -864,11 +864,6 @@ const MLWorkflowPage = () => {
         }
     };
 
-    if (!user) {
-        navigate('/login');
-        return null;
-    }
-
     return (
         <Container maxWidth="lg" sx={{ py: 4 }}>
             <Paper sx={{ p: 3, mb: 3, background: `linear-gradient(135deg, ${details.color}15, transparent)`, border: `1px solid ${details.color}30` }}>
