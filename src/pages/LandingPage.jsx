@@ -9,7 +9,7 @@ const LandingPage = () => {
     const navigate = useNavigate();
 
     const handleStartDemo = () => {
-        navigate('/experiment');
+        navigate('/categories');
     };
 
     return (
@@ -92,9 +92,9 @@ const LandingPage = () => {
                                         color: '#f8fbff',
                                         px: 3
                                     }}
-                                    onClick={() => navigate('/dashboard')}
+                                    onClick={() => navigate('/categories')}
                                 >
-                                    View Dashboard
+                                    View Categories
                                 </Button>
                             </Stack>
                         </motion.div>
