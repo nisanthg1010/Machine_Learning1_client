@@ -1,19 +1,13 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Box, Container, Typography, Grid, Card, CardContent, CardActionArea, Stack, Chip } from '@mui/material';
-import { useNavigate, Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import PsychologyIcon from '@mui/icons-material/Psychology';
 import BubbleChartIcon from '@mui/icons-material/BubbleChart';
 import AutoGraphIcon from '@mui/icons-material/AutoGraph';
 import AccountTreeIcon from '@mui/icons-material/AccountTree';
-import { AuthContext } from '../App';
 
 const MLCategoryPage = () => {
     const navigate = useNavigate();
-    const { user } = useContext(AuthContext);
-
-    if (!user) {
-        return <Navigate to="/login" replace />;
-    }
 
     const categories = [
         {
@@ -65,7 +59,6 @@ const MLCategoryPage = () => {
                         Select a machine learning category to start training models
                     </Typography>
                     <Stack direction="row" spacing={1} justifyContent="center" sx={{ mt: 2 }}>
-                        <Chip label={`Welcome, ${user.name}`} color="primary" />
                         <Chip label="All categories available" color="success" variant="outlined" />
                     </Stack>
                 </Stack>

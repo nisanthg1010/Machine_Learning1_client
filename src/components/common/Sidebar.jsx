@@ -7,7 +7,7 @@ import SchoolIcon from '@mui/icons-material/School';
 import CleaningServicesIcon from '@mui/icons-material/CleaningServices';
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { ModelContext, AuthContext } from '../../App';
+import { ModelContext } from '../../App';
 
 const drawerWidth = 260;
 
@@ -18,7 +18,6 @@ const Sidebar = ({ open, onClose }) => {
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     const modelContext = React.useContext(ModelContext);
     const latestModel = modelContext?.latestModel;
-    const { user, logout } = React.useContext(AuthContext) || {};
 
     const primaryMenu = [
         { text: 'ML Categories', icon: <DashboardIcon />, path: '/categories' },
@@ -168,40 +167,9 @@ const Sidebar = ({ open, onClose }) => {
 
                 <Divider sx={{ borderColor: 'rgba(255,255,255,0.05)', my: 2 }} />
 
-                <Box sx={{ p: 2, borderRadius: 3, background: 'linear-gradient(145deg, rgba(255,79,183,0.08), rgba(155,107,255,0.12))', border: '1px solid rgba(255,255,255,0.06)' }}>
-                    {user ? (
-                        <>
-                            <Typography variant="subtitle2" sx={{ mb: 1, color: 'rgba(248,251,255,0.75)' }}>Signed in</Typography>
-                            <Typography variant="h6" sx={{ fontWeight: 700 }}>{user.name}</Typography>
-                            <Typography variant="body2" sx={{ color: 'rgba(248,251,255,0.6)' }}>{user.email}</Typography>
-                            <Button
-                                size="small"
-                                variant="outlined"
-                                onClick={() => { logout && logout(); navigate('/login'); }}
-                                sx={{ mt: 1.5, borderRadius: 2, borderColor: 'rgba(255,255,255,0.2)', color: 'white' }}
-                            >
-                                Logout
-                            </Button>
-                        </>
-                    ) : (
-                        <>
-                            <Typography variant="subtitle2" sx={{ mb: 1, color: 'rgba(248,251,255,0.75)' }}>Welcome</Typography>
-                            <Typography variant="body2" sx={{ color: 'rgba(248,251,255,0.6)', mb: 1 }}>Login or sign up to save datasets and experiments.</Typography>
-                            <Button
-                                fullWidth
-                                variant="contained"
-                                startIcon={<WhatshotIcon />}
-                                onClick={() => navigate('/login')}
-                                sx={{
-                                    borderRadius: 2,
-                                    background: 'linear-gradient(135deg, #ff4fb7, #9b6bff)',
-                                    boxShadow: '0 12px 32px -16px rgba(255,79,183,0.6)'
-                                }}
-                            >
-                                Login / Sign Up
-                            </Button>
-                        </>
-                    )}
+                <Box sx={{ p: 2, borderRadius: 3, background: 'linear-gradient(145deg, rgba(155,107,255,0.08), rgba(61,213,152,0.08))', border: '1px solid rgba(255,255,255,0.06)' }}>
+                    <Typography variant="subtitle2" sx={{ mb: 1, color: 'rgba(248,251,255,0.75)' }}>Getting Started</Typography>
+                    <Typography variant="body2" sx={{ color: 'rgba(248,251,255,0.6)', mb: 1 }}>Select a machine learning category from the menu to start training models.</Typography>
                 </Box>
             </Box>
         </>

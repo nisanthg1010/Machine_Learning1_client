@@ -9,12 +9,11 @@ import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
 import CloseIcon from '@mui/icons-material/Close';
 import InfoIcon from '@mui/icons-material/Info';
 import { LineChart, Line, BarChart, Bar, ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Cell, PieChart, Pie, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, Area, AreaChart } from 'recharts';
-import { AuthContext, ModelContext } from '../App';
+import { ModelContext } from '../App';
 
 const MLWorkflowPage = () => {
     const { category } = useParams();
     const navigate = useNavigate();
-    const { user } = useContext(AuthContext);
     const { setLatestModel } = useContext(ModelContext);
 
     // Workflow steps

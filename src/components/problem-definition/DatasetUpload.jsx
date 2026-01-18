@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Box, Typography, Button, TextField, CircularProgress, Alert, Paper, Stack, Chip, LinearProgress } from '@mui/material';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import experimentService from '../../services/experimentService';
-import authService from '../../services/authService';
 
 const DatasetUpload = ({ problemType, onUploadComplete }) => {
     const [file, setFile] = useState(null);
@@ -23,22 +22,6 @@ const DatasetUpload = ({ problemType, onUploadComplete }) => {
         if (e.target.files[0]) {
             setFile(e.target.files[0]);
             setName(e.target.files[0].name.split('.')[0]);
-        }
-    };
-
-    const ensureDemoAuth = async () => {
-        const cached = localStorage.getItem('user');
-        if (cached) return;
-
-        const demoUser = {
-            name: 'Demo User',
-            email: 'demo@example.com',
-            password: 'password123'
-        };
-        try {
-            await authService.login(demoUser);
-        } catch (_e) {
-            await authService.register(demoUser);
         }
     };
 
@@ -64,7 +47,6 @@ const DatasetUpload = ({ problemType, onUploadComplete }) => {
         formData.append('targetColumn', 'target');
 
         try {
-            await ensureDemoAuth();
             const result = await experimentService.uploadDataset(formData);
             setUploadProgress(100);
             setStepIndex(liveSteps.length - 1);

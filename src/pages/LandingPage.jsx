@@ -2,32 +2,14 @@ import React from 'react';
 import { Box, Typography, Button, Container, Grid, Paper, Stack, Chip } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import authService from '../services/authService';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import WhatshotIcon from '@mui/icons-material/Whatshot';
 
 const LandingPage = () => {
     const navigate = useNavigate();
 
-    const handleStartDemo = async () => {
-        // Navigate immediately so the UI responds even if auth is slow
+    const handleStartDemo = () => {
         navigate('/experiment');
-
-        // Fire-and-forget demo auth to seed a token for API calls
-        const demoUser = {
-            name: 'Demo User',
-            email: 'demo@example.com',
-            password: 'password123'
-        };
-        try {
-            await authService.login(demoUser);
-        } catch (_e) {
-            try {
-                await authService.register(demoUser);
-            } catch (err) {
-                console.warn('Demo auth/register failed; uploads may need manual login', err);
-            }
-        }
     };
 
     return (

@@ -15,14 +15,12 @@ import MLProcessPage from './pages/MLProcessPage';
 import PreprocessingGuidePage from './pages/PreprocessingGuidePage';
 import TrainingGuidePage from './pages/TrainingGuidePage';
 import Layout from './components/common/Layout';
-import AuthPage from './pages/AuthPage';
 import MLCategoryPage from './pages/MLCategoryPage';
 import MLWorkflowPage from './pages/MLWorkflowPage';
 import './styles/animations.css';
 
 // Create Context for sharing model data
 export const ModelContext = React.createContext();
-export const AuthContext = React.createContext();
 
 const darkTheme = createTheme({
     palette: {
@@ -94,43 +92,25 @@ const darkTheme = createTheme({
 
 function App() {
     const [latestModel, setLatestModel] = React.useState(null);
-    const [user, setUser] = React.useState(() => {
-        const cached = localStorage.getItem('user');
-        return cached ? JSON.parse(cached) : null;
-    });
-
-    const logout = () => {
-        localStorage.removeItem('user');
-        setUser(null);
-    };
-
-    React.useEffect(() => {
-        if (user) {
-            localStorage.setItem('user', JSON.stringify(user));
-        }
-    }, [user]);
 
     return (
         <ThemeProvider theme={darkTheme}>
             <CssBaseline />
-            <AuthContext.Provider value={{ user, setUser, logout }}>
-                <ModelContext.Provider value={{ latestModel, setLatestModel }}>
-                    <Router>
-                        <Layout>
-                            <Routes>
-                                <Route path="/login" element={<AuthPage />} />
-                                <Route path="/categories" element={<MLCategoryPage />} />
-                                <Route path="/workflow/:category" element={<MLWorkflowPage />} />
-                                <Route path="/experiment" element={<ExperimentWizard />} />
-                                <Route path="/ml-process" element={<MLProcessPage />} />
-                                <Route path="/preprocessing" element={<PreprocessingGuidePage />} />
-                                <Route path="/training-guide" element={<TrainingGuidePage />} />
-                                <Route path="/" element={user ? <MLCategoryPage /> : <AuthPage />} />
-                            </Routes>
-                        </Layout>
-                    </Router>
-                </ModelContext.Provider>
-            </AuthContext.Provider>
+            <ModelContext.Provider value={{ latestModel, setLatestModel }}>
+                <Router>
+                    <Layout>
+                        <Routes>
+                            <Route path="/" element={<LandingPage />} />
+                            <Route path="/categories" element={<MLCategoryPage />} />
+                            <Route path="/workflow/:category" element={<MLWorkflowPage />} />
+                            <Route path="/experiment" element={<ExperimentWizard />} />
+                            <Route path="/ml-process" element={<MLProcessPage />} />
+                            <Route path="/preprocessing" element={<PreprocessingGuidePage />} />
+                            <Route path="/training-guide" element={<TrainingGuidePage />} />
+                        </Routes>
+                    </Layout>
+                </Router>
+            </ModelContext.Provider>
         </ThemeProvider>
     )
 }
